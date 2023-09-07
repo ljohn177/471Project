@@ -1,0 +1,50 @@
+
+html{
+    font-family: verdana, arial;
+}
+h1{
+    float: left;
+    margin-right: 10px;
+    margin-left: 0px;
+    margin-top:2px;
+    margin-bottom:0px;
+
+}
+.navbar ul{
+    list-style-type: none;
+    background-color: hsl(0, 0%, 84%);
+    padding: 0px;
+    margin: 0px;
+    margin-top:8px;
+    overflow: hidden;
+}
+.navbar a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+.navbar a:hover{
+    background-color: hsl(0, 0%, 52%);
+}
+.navbar li{
+    float: left;
+}
+.searchbar{
+    display: inline;
+}
+.searchbar form input{
+    width: 500px;
+    height: 40px;
+    font-size: large;
+}
+#searchbtn{
+    width:55px;
+    height: 46px;
+    margin-top: 5px;
+    padding-top:4px;
+    padding-right:5px;
+    padding-left:5px;
+    padding-bottom:0px
+}
