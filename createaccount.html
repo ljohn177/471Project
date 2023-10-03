@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="font-family: verdana, arial">
     <head>
-        <title>Epay Sign In</title>
+        <title>Epay Create Account</title>
     </head>
     <body>
         <br><br>
@@ -18,8 +18,15 @@
             <input type="password" id="password"><br>
             <label for="cpassword">Confirm Password:</label>
             <input type="password" id="cpassword"><br>
+            <label for="birthdate">Birth Date:</label>
+            <input type="date" id="birthdate"><br>
+            <label for="phone">Phone Number:</label>
+            <input type ="tel" id="phone"><br>
+            <label for="address">Address:</label>
+            <input type="text" id="address"><br>
             <input id="reset" type="reset">
-            <input id="submit" type="submit">
+            <input id="submit" type="submit"><br>
+            <a href="signin.html">Already have an account?</a>
         </form>
     </body>
     <style>
@@ -34,7 +41,7 @@
             transform: translate(-50%, -50%);
             position: absolute;
             width:400px;
-            height: 100px;
+            height: 200px;
             border-style: solid;
             border-width: 1px;
             border-radius: 10px;
@@ -69,6 +76,9 @@
         }
         #submit{
             margin-top:5px;
+        }
+        a{
+            font-size: 12px;
         }
     </style>
 </html>
