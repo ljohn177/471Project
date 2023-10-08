@@ -9,7 +9,7 @@ CREATE TABLE user(
 	birth_day INT,
     birth_month INT,
 	birth_year INT,
-    phone_number INT NOT NULL,
+    phone_number VARCHAR(20) NOT NULL,
     address VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
     );
