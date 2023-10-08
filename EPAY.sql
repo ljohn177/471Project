@@ -56,7 +56,7 @@ CREATE TABLE payment(
     sender_id INT NOT NULL,
     amount FLOAT NOT NULL,
     currency VARCHAR(10) NOT NULL,
-    PRIMARY KEY (payment_id),
+    PRIMARY KEY (payment_id), 
     FOREIGN KEY (receiver_id) REFERENCES seller(seller_id),
     FOREIGN KEY (sender_id) REFERENCES buyer(buyer_id)
 );
