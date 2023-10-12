@@ -8,7 +8,7 @@ const port = 3000;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '<insert password here>',
+  password: '',
   database: 'epay',
 });
 
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve your HTML files (adjust the path accordingly)
-app.use(express.static(__dirname));
+app.use(express.static("/C/Users/Jacob/COSC471ProjectFiles/471Project"));
 
 // Handle user registration
 app.post('/register', (req, res) => {
@@ -92,4 +92,17 @@ app.post('/login', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
+});
+
+app.post('/createPost', (req, res) => {
+  const { itemName, file, descript, price } = req.body;
+  connection.query('INSERT INTO product (name, image, description, price) VALUES (?, ?, ?, ?)',
+  [itemName, file, descript, price], 
+  (error, result) => {
+    if (error) {
+      console.error('Error inserting post data:', error);
+      return res.status(500).send('Server error');
+    }
+    res.send('Post created successfully');
+    });
 });

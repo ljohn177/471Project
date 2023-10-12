@@ -37,8 +37,10 @@
             <label for="description">Description:</label>
             <input type="text" id="description"><br>
             <label for="imageupload" id="image">Image:</label>
-            <input type="file" id="imageupload"><br>
-            <input id="submit" type="submit" onclick="createPost()"></button>
+            <input type="file" accept = "image/*" id="imageupload"><br>
+            <input id="submit" type="submit"></button>
         </form>
+        <div id="createPostResult"></div>
+        <script src = "createPost.js"></script>
     </body>
 </html>
