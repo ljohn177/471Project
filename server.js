@@ -106,6 +106,7 @@ app.post('/createPost', (req, res) => {
     res.send('Post created successfully');
     });
 });
+
 app.post('/load', (req, res) =>{
   connection.query('SELECT name, image, desciption, price FROM product'),
   (error, result) =>{
@@ -113,7 +114,8 @@ app.post('/load', (req, res) =>{
       console.error('Error retrieving data:', error);
       return res.status(500).send('Server error');
     }
-    var data = connection.query('SELECT name, image, desciption, price FROM product');
-    res.send(data);
+    rows.forEach( (row) => {
+      res.send(`<tr><td>${row.image}</td><td>${row.name}</td><td>${row.description}</td><td>${row.price}</td></tr>`);
+    })
   }
 })
