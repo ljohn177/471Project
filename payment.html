@@ -19,13 +19,15 @@
                 <option value="discover">Discover</option>
                 <option value="amex">American Express</option>
             </select><br>
-            <label for="accountnum">Account Number:</label>
-            <input type="text" id="accountnum"><br>
-            <label for="routing">Routing Number:</label>
-            <input type="text" id="routing"><br>
+            <label for="cardNum">Card Number:</label>
+            <input type="text" id="cardNum"><br>
+            <label for="cvv">CVV:</label>
+            <input type="password" id="cvv"><br>
             <input id="reset" type="reset">
-            <input id="submit" type="submit">
+            <input id="submit" type="submit" onclick = "addPayment()">
         </form>
+        <div id="paymentResult"></div>
+        <script src = "payment.js"></script>
     </body>
     <style>
         #pay{
@@ -57,11 +59,11 @@
             margin-top:5px;
             font-size:15px;
         }
-        #accountnum{
+        #cardNum{
             margin-top:5px;
             font-size:15px;
         }
-        #routing{
+        #cvv{
             margin-top:5px;
             font-size:15px;
         }

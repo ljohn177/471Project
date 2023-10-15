@@ -114,8 +114,16 @@ app.post('/load', (req, res) =>{
       console.error('Error retrieving data:', error);
       return res.status(500).send('Server error');
     }
-    rows.forEach( (row) => {
-      res.send(`<tr><td>${row.image}</td><td>${row.name}</td><td>${row.description}</td><td>${row.price}</td></tr>`);
-    })
+      res.send(result);
   }
+})
+app.post('/addPay', (req,res) =>{
+  const { fname, payment } = req.body;
+  connection.query('INSERT INTO payment(currency) VALUES (?)', [payment], (error, result) =>{
+    if (error) {
+      console.error('Error adding payment:', error);
+      return res.status(500).send('Server error');
+    }
+    res.send('Payment added');
+  })
 })
