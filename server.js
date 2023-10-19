@@ -8,7 +8,7 @@ const port = 3000;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: 'root',
   database: 'epay',
 });
 
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve your HTML files (adjust the path accordingly)
-app.use(express.static("/C/Users/Jacob/COSC471ProjectFiles/471Project"));
+app.use(express.static(__dirname));
 
 // Handle user registration
 app.post('/register', (req, res) => {
@@ -94,10 +94,11 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
+//insert data when creating post into product table
 app.post('/createPost', (req, res) => {
   const { itemName, file, descript, price } = req.body;
   connection.query('INSERT INTO product (name, image, description, price) VALUES (?, ?, ?, ?)',
-  [itemName, file, descript, price], 
+  [itemName, file, descript, price, sellerId], 
   (error, result) => {
     if (error) {
       console.error('Error inserting post data:', error);
@@ -107,8 +108,9 @@ app.post('/createPost', (req, res) => {
     });
 });
 
+//load post data for table
 app.post('/load', (req, res) =>{
-  connection.query('SELECT name, image, desciption, price FROM product'),
+  connection.query('SELECT name, image, description, price FROM product'),
   (error, result) =>{
     if(error){
       console.error('Error retrieving data:', error);
@@ -117,6 +119,8 @@ app.post('/load', (req, res) =>{
       res.send(result);
   }
 })
+
+//add payment data to payment table
 app.post('/addPay', (req,res) =>{
   const { fname, payment } = req.body;
   connection.query('INSERT INTO payment(currency) VALUES (?)', [payment], (error, result) =>{
