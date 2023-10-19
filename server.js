@@ -8,7 +8,7 @@ const port = 3000;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: '<password>',
   database: 'epay',
 });
 
@@ -16,8 +16,8 @@ const connection = mysql.createConnection({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve your HTML files (adjust the path accordingly)
-app.use(express.static("/C/Users/Jacob/COSC471ProjectFiles/471Project"));
+// Serve your HTML files
+app.use(express.static(__dirname));
 
 // Handle user registration
 app.post('/register', (req, res) => {
