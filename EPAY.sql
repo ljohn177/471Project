@@ -31,7 +31,6 @@ CREATE TABLE payment(
     receiver_id INT NOT NULL,
     sender_id INT NOT NULL,
     amount FLOAT NOT NULL,
-    currency VARCHAR(10) NOT NULL,
     is_sold BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (payment_id), 
     FOREIGN KEY (receiver_id) REFERENCES user(id),
