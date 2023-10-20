@@ -14,30 +14,20 @@ CREATE TABLE user(
     PRIMARY KEY (id)
     );
     
-CREATE TABLE account(
-	account_id INT NOT NULL AUTO_INCREMENT,
-    user_id INT NOT NULL,
-	username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    PRIMARY KEY (account_id),
-    FOREIGN KEY(user_id) REFERENCES user(id)
-);
 CREATE TABLE seller(
 	seller_id INT NOT NULL AUTO_INCREMENT,
-    account_id INT NOT NULL,
+    user_id INT NOT NULL,
     PRIMARY KEY(seller_id),
-    FOREIGN KEY (account_id) REFERENCES account(account_id)
-    
+    FOREIGN KEY (user_id) REFERENCES user(id) 
 );
 
 CREATE TABLE buyer(
 	buyer_id INT NOT NULL AUTO_INCREMENT,
-    account_id INT NOT NULL,
+    user_id INT NOT NULL,
     PRIMARY KEY(buyer_id),
-    FOREIGN KEY (account_id) REFERENCES account(account_id)
+    FOREIGN KEY (user_id) REFERENCES user(id)
     
 );
-
 
 CREATE TABLE product(
 	product_id INT NOT NULL AUTO_INCREMENT,

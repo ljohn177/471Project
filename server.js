@@ -16,7 +16,7 @@ const connection = mysql.createConnection({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve your HTML files (adjust the path accordingly)
+// Serve your HTML files
 app.use(express.static(__dirname));
 
 // Handle user registration
