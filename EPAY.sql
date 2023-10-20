@@ -14,21 +14,6 @@ CREATE TABLE user(
     PRIMARY KEY (id)
     );
     
-CREATE TABLE seller(
-	seller_id INT NOT NULL AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    PRIMARY KEY(seller_id),
-    FOREIGN KEY (user_id) REFERENCES user(id) 
-);
-
-CREATE TABLE buyer(
-	buyer_id INT NOT NULL AUTO_INCREMENT,
-    user_id INT NOT NULL,
-    PRIMARY KEY(buyer_id),
-    FOREIGN KEY (user_id) REFERENCES user(id)
-    
-);
-
 CREATE TABLE product(
 	product_id INT NOT NULL AUTO_INCREMENT,
     name VARCHAR(1000) NOT NULL,
@@ -37,7 +22,7 @@ CREATE TABLE product(
     price FLOAT NOT NULL,
     seller_id INT NOT NULL,
     PRIMARY KEY (product_id),
-    FOREIGN KEY (seller_id) REFERENCES seller(seller_id)
+    FOREIGN KEY (seller_id) REFERENCES user(id)
 );
 
 CREATE TABLE payment(
@@ -47,8 +32,8 @@ CREATE TABLE payment(
     amount FLOAT NOT NULL,
     currency VARCHAR(10) NOT NULL,
     PRIMARY KEY (payment_id), 
-    FOREIGN KEY (receiver_id) REFERENCES seller(seller_id),
-    FOREIGN KEY (sender_id) REFERENCES buyer(buyer_id)
+    FOREIGN KEY (receiver_id) REFERENCES user(id),
+    FOREIGN KEY (sender_id) REFERENCES user(id)
 );
     
     
