@@ -6,6 +6,7 @@ CREATE TABLE user(
 	id INT NOT NULL AUTO_INCREMENT,
 	name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
 	birth_day INT,
     birth_month INT,
 	birth_year INT,
@@ -31,9 +32,19 @@ CREATE TABLE payment(
     sender_id INT NOT NULL,
     amount FLOAT NOT NULL,
     currency VARCHAR(10) NOT NULL,
+    is_sold BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (payment_id), 
     FOREIGN KEY (receiver_id) REFERENCES user(id),
     FOREIGN KEY (sender_id) REFERENCES user(id)
+);
+CREATE TABLE paymentinfo(
+	user_id INT NOT NULL,
+	name VARCHAR(255),
+    cardtype VARCHAR(255),
+    card_no INT NOT NULL,
+    cvv INT,
+    PRIMARY KEY (card_no),
+    FOREIGN KEY (user_id) REFERENCES user(id)
 );
     
     
