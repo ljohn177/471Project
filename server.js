@@ -98,7 +98,7 @@ app.listen(port, () => {
 app.post('/createPost', (req, res) => {
   const { itemName, file, descript, price } = req.body;
   connection.query('INSERT INTO product (name, image, description, price) VALUES (?, ?, ?, ?)',
-  [itemName, file, descript, price, sellerId], 
+  [itemName, file, descript, price], 
   (error, result) => {
     if (error) {
       console.error('Error inserting post data:', error);
@@ -110,24 +110,39 @@ app.post('/createPost', (req, res) => {
 
 //load post data for table
 app.post('/load', (req, res) =>{
-  connection.query('SELECT name, image, description, price FROM product'),
+  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 'FALSE'",
   (error, result) =>{
     if(error){
       console.error('Error retrieving data:', error);
       return res.status(500).send('Server error');
-    }
+    }else{
       res.send(result);
-  }
+    }
+  })
 })
 
 //add payment data to payment table
 app.post('/addPay', (req,res) =>{
-  const { fname, payment } = req.body;
-  connection.query('INSERT INTO payment(currency) VALUES (?)', [payment], (error, result) =>{
+  const { name, payment, cardno, cvv } = req.body;
+  connection.query('INSERT INTO paymentinfo(name, cardtype, card_no, cvv) VALUES (?, ?, ?, ?)', [name, payment, cardno, cvv],
+  (error, result) =>{
     if (error) {
       console.error('Error adding payment:', error);
       return res.status(500).send('Server error');
+    }else{
+      res.send('Payment added');
     }
-    res.send('Payment added');
+  })
+})
+app.post('/loadItem', (req, res) =>{
+  const {productId} = req.body;
+  connection.query('SELECT product_id FROM product WHERE product_id = ?', [productId],
+  (error, result) =>{
+    if(error){
+      console.error('Error adding payment:', error);
+      return res.status(500).send('Server error');
+    }else{
+      res.send(result);
+    }
   })
 })
