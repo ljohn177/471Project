@@ -22,6 +22,7 @@ CREATE TABLE product(
     description VARCHAR(1000), 
     price FLOAT NOT NULL,
     seller_id INT NOT NULL,
+    is_sold BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (product_id),
     FOREIGN KEY (seller_id) REFERENCES user(id)
 );
@@ -31,7 +32,6 @@ CREATE TABLE payment(
     receiver_id INT NOT NULL,
     sender_id INT NOT NULL,
     amount FLOAT NOT NULL,
-    is_sold BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (payment_id), 
     FOREIGN KEY (receiver_id) REFERENCES user(id),
     FOREIGN KEY (sender_id) REFERENCES user(id)

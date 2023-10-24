@@ -134,12 +134,24 @@ app.post('/addPay', (req,res) =>{
     }
   })
 })
+//load an item when clicked on table
 app.post('/loadItem', (req, res) =>{
   const {productId} = req.body;
   connection.query('SELECT product_id FROM product WHERE product_id = ?', [productId],
   (error, result) =>{
     if(error){
       console.error('Error adding payment:', error);
+      return res.status(500).send('Server error');
+    }else{
+      res.send(result);
+    }
+  })
+})
+app.post('/search', (req, res) =>{
+  const {searchString} = req.body;
+  connection.query('SELECT name, image, description, price FROM product WHERE name LIKE ?', [searchString],
+  (error, result)=>{
+    if(error){
       return res.status(500).send('Server error');
     }else{
       res.send(result);
