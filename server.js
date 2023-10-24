@@ -62,7 +62,7 @@ app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   // Check if the email and password match in the 'account' table
-  connection.query('SELECT * FROM account WHERE username = ? AND password = ?', [email, password], (error, results) => {
+  connection.query('SELECT * FROM user WHERE email = ? AND password = ?', [email, password], (error, results) => {
     if (error) {
       console.error('Error checking user credentials:', error);
       return res.status(500).send('Server error');
