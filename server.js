@@ -8,7 +8,7 @@ const port = 3000;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'root',
+  password: 'root', // change the password
   database: 'epay',
 });
 
@@ -43,27 +43,14 @@ app.post('/register', (req, res) => {
 
 // Insert user data into the database
 connection.query(
-  'INSERT INTO user (name, email, birth_day, birth_month, birth_year, phone_number, address) VALUES (?, ?, ?, ?, ?, ?, ?)',
-  [name, email, birth_day, birth_month, birth_year, phone, address],
+  'INSERT INTO user (name, email, password, birth_day, birth_month, birth_year, phone_number, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+  [name, email, password, birth_day, birth_month, birth_year, phone, address],
   (error, result) => {
     if (error) {
       console.error('Error inserting user data:', error);
       return res.status(500).send('Server error');
     }
 
-    // Insert account data into the 'account' table
-    const user_id = result.insertId; // Get the ID of the newly inserted user
-    connection.query(
-      'INSERT INTO account (user_id, username, password) VALUES (?, ?, ?)',
-      [user_id, email, password], // Use the user_id from above
-      (error) => {
-        if (error) {
-          console.error('Error inserting account data:', error);
-          return res.status(500).send('Server error');
-        }
-        res.send('User registered successfully');
-      }
-    );
   }
 );
 
@@ -75,7 +62,7 @@ app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   // Check if the email and password match in the 'account' table
-  connection.query('SELECT * FROM account WHERE username = ? AND password = ?', [email, password], (error, results) => {
+  connection.query('SELECT * FROM user WHERE email = ? AND password = ?', [email, password], (error, results) => {
     if (error) {
       console.error('Error checking user credentials:', error);
       return res.status(500).send('Server error');
