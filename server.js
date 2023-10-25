@@ -135,6 +135,7 @@ app.post('/loadItem', (req, res) =>{
   })
 })
 app.post('/search', (req, res) =>{
+  searchString = "%"+searchString+"%";
   const {searchString} = req.body;
   connection.query('SELECT name, image, description, price FROM product WHERE name LIKE ?', [searchString],
   (error, result)=>{

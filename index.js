@@ -8,7 +8,7 @@ function loadData(){
     })
     .then(data => {
         for(var i=0;i<data.length;i++){
-            document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html>"'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
+            document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
         }
     })
     .catch(error => {
@@ -29,7 +29,7 @@ function search(){
     .then(data => {
         //fill table with returned rows
         for(var i=0;i<data.length;i++){
-            document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html>"'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
+            document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
         }
     })
     .catch(error => {
