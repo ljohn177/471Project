@@ -87,3 +87,6 @@ h1{
 #itemdescript{
     margin-right:12%;
 }
+#productid{
+    visibility: hidden;
+}
