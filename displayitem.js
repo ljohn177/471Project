@@ -1,13 +1,10 @@
 function loadProduct(){
-    //retrieve product_id of product clicked from database...
-    //then have to send it to server...
-
     let itemName = document.getElementById("itemName");
     let itemimg = document.getElementById("itemimg");
     let itemprice = document.getElementById("itemprice");
     let descript = document.getElementById("itemdescript");
 
-    let productId = 'placeholder'; //placeholder will change.
+    let productId = document.getElementById("productid").innerHTML;
 
     //fetch post data from server
     fetch('/loadItem', {

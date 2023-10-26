@@ -150,6 +150,7 @@ app.post('/search', (req, res) =>{
   })
 })
 
+//get id of clicked product
 app.post('/findId', (req, res) =>{
   const {name} = req.body;
   connection.query('SELECT product_id FROM product WHERE name = ?', [name],

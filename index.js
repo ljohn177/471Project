@@ -37,6 +37,7 @@ function search(){
         console.error('Error:', error);
     });
 }
+
 //function to determine which item was clicked and display that item on displayitem.html
 function itemClicked(element){
     //find element in db based on name
