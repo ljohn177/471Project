@@ -13,7 +13,15 @@ document.getElementById('signinform').addEventListener('submit', function (event
     })
     .then(response => response.text())
     .then(data => {
-        document.getElementById('signinresult').textContent = data;
+        if (data === 'User logged in successfully') {
+            // Store user login status in localStorage
+            localStorage.setItem('user', 'loggedIn');
+
+            // Redirect to the target page after successful login
+            window.location.href = "index.html";
+        } else {
+            document.getElementById('signinresult').textContent = data;
+        }
     })
     .catch(error => {
         console.error('Error:', error);

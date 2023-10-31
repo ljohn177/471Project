@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+const session = require('express-session');
 
 // Create a connection to your MySQL database
 const connection = mysql.createConnection({
@@ -18,6 +19,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve your HTML files
 app.use(express.static(__dirname));
+
+// Session Configuration
+app.use(
+  session({
+    secret: 'your_session_secret', // Change this to a secure random string
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Change this to true if using HTTPS
+  })
+);
 
 // Handle user registration
 app.post('/register', (req, res) => {
@@ -72,10 +83,12 @@ app.post('/login', (req, res) => {
       return res.status(401).send('Invalid credentials');
     }
 
+    // Store the user's ID in the session
+    req.session.userId = results[0].id;
+
     res.send('User logged in successfully');
   });
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
