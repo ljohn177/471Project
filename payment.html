@@ -2,16 +2,22 @@
 <html style="font-family: verdana, arial">
     <head>
         <title>Epay Payment Info</title>
+        <script>
+            if (!localStorage.getItem('user')) {
+                // Redirect to the login page if the user is not logged in
+                window.location.href = "signin.html";
+            }
+        </script>
     </head>
     <body>
         <br><br>
         <h1 style="text-align: center;"><span style="color: red">E</span><span style="color: blue">p</span><span style="color: rgb(206, 206, 3)">a</span><span style="color: rgb(1, 195, 1)">y</span></h1>
         <form id="pay">
             <h3>Payment Info</h3>
-            <label for="fname">First Name:</label>
-            <input type="text" id="fname" placeholder="John"><br>
-            <label for="lname">Last Name:</label>
-            <input type="text" id="lname" placeholder="Doe"><br>
+            <label for="fName">First Name:</label>
+            <input type="text" id="fName" placeholder="John"><br>
+            <label for="lName">Last Name:</label>
+            <input type="text" id="lName" placeholder="Doe"><br>
             <label for="payment">Payment</label>
             <select id="payment">
                 <option value="visa">Visa</option>

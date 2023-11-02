@@ -30,8 +30,8 @@ h1{
 }
 .navbar li{
     float: left;
-    margin-left:7%;
-    margin-right:7%;
+    margin-left:5%;
+    margin-right:5%;
 }
 .searchbar{
     display: inline;

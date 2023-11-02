@@ -8,9 +8,10 @@ function loadData(){
         },
     })
     .then(data => { //fill table
-        for(var i=0;i<data.length;i++){
-            document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
-        }
+        console.log(data);
+        //for(var i=0;i<data.length;i++){
+            //document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
+        //}
     })
     .catch(error => {
         console.error('Error:', error);

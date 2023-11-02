@@ -30,7 +30,7 @@ app.use(
   })
 );
 
-// Handle user registration
+// Handle user registration   **WORKING
 app.post('/register', (req, res) => {
 
   const { fname, lname, email, password, birthdate, phone, address } = req.body;
@@ -68,7 +68,7 @@ connection.query(
   });
 });
 
-// Handle user login
+// Handle user login    **WORKING
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -94,11 +94,12 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-//insert data when creating post into product table
+//insert data when creating post into product table **WORKING
 app.post('/createPost', (req, res) => {
   const { itemName, file, descript, price } = req.body;
-  connection.query('INSERT INTO product (name, image, description, price) VALUES (?, ?, ?, ?)',
-  [itemName, file, descript, price], 
+  let userId = req.session.userId;
+  connection.query('INSERT INTO product (name, image, description, price, seller_id) VALUES (?, ?, ?, ?, ?)',
+  [itemName, file, descript, price, userId], 
   (error, result) => {
     if (error) {
       console.error('Error inserting post data:', error);
@@ -110,7 +111,7 @@ app.post('/createPost', (req, res) => {
 
 //load post data for table
 app.post('/load', (req, res) =>{
-  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 'FALSE'",
+  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 0",
   (error, result) =>{
     if(error){
       console.error('Error retrieving data:', error);
@@ -121,10 +122,12 @@ app.post('/load', (req, res) =>{
   })
 })
 
-//add payment data to payment table
+//add payment data to payment table  **WORKING
 app.post('/addPay', (req,res) =>{
-  const { name, payment, cardno, cvv } = req.body;
-  connection.query('INSERT INTO paymentinfo(name, cardtype, card_no, cvv) VALUES (?, ?, ?, ?)', [name, payment, cardno, cvv],
+  const {fname, lname, payment, cardno, cvv } = req.body;
+  const name = `${fname} ${lname}`;
+  let userId = req.session.userId;
+  connection.query('INSERT INTO paymentinfo(user_id, name, cardtype, card_no, cvv) VALUES (?, ?, ?, ?, ?)', [userId, name, payment, cardno, cvv],
   (error, result) =>{
     if (error) {
       console.error('Error adding payment:', error);
