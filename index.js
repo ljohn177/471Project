@@ -7,32 +7,38 @@ function loadData(){
             'Content-Type': 'application/json',
         },
     })
-    .then(data => { //fill table
-        console.log(data);
-        //for(var i=0;i<data.length;i++){
-            //document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
-        //}
+    .then(response => response.json())
+    .then(data => {
+        var str ="";
+        for(var i=0;i<data.length;i++){
+            str += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
+        }
+        document.getElementById("dataTable").innerHTML = str;
     })
     .catch(error => {
         console.error('Error:', error);
     });
 }
 //function for searching
-function search(){
-    let searchString = document.getElementById("search").value; //get string from search box
-    document.getElementById("dataTable").innerHTML = ""; //clear previous table
+function searchDB(){
+    var searchString = document.getElementById("search").value; //get string from search box
+    searchString = "%" + searchString + "%";
     fetch('/search', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(searchString),
+        body: JSON.stringify({ searchString }),
     })
+    .then(response => response.json())
     .then(data => {
+        var str = "";
         //fill table with returned rows
         for(var i=0;i<data.length;i++){
-            document.getElementById('dataTable').innerHTML += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
+            str += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
         }
+        document.getElementById("dataTable").innerHTML = ""; //clear previous table
+        document.getElementById("dataTable").innerHTML = str;
     })
     .catch(error => {
         console.error('Error:', error);

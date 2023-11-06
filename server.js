@@ -109,9 +109,9 @@ app.post('/createPost', (req, res) => {
     });
 });
 
-//load post data for table
+//load post data for table  **WORKING BESIDES IMAGE
 app.post('/load', (req, res) =>{
-  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 0",
+  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 'FALSE'",
   (error, result) =>{
     if(error){
       console.error('Error retrieving data:', error);
@@ -154,7 +154,6 @@ app.post('/loadItem', (req, res) =>{
 
 //search functionality
 app.post('/search', (req, res) =>{
-  searchString = "%"+searchString+"%";
   const {searchString} = req.body;
   connection.query('SELECT name, image, description, price FROM product WHERE name LIKE ?', [searchString],
   (error, result)=>{
