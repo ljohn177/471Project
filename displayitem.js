@@ -5,7 +5,7 @@ function loadProduct(){
     let descript = document.getElementById("itemdescript");
     //get product id from local storage
     let productId = localStorage.getItem("productId");
-    alert(productId);
+
     //fetch post data from server
     fetch('/loadItem', {
         method: 'POST',
@@ -27,7 +27,7 @@ function loadProduct(){
 }
 
 //function for searching
-function searchDB(){
+function search(){
     var searchString = document.getElementById("search").value; //get string from search box
     searchString = "%" + searchString + "%";
     window.location.href = "index.html";
