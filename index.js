@@ -54,11 +54,13 @@ function itemClicked(element){
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(name),
+        body: JSON.stringify({name}),
     })
+    .then(response => response.json())
     .then(data => {
-        //send product id to display item
-        document.getElementById("productid").innerHTML = data.product_id;
+        //store product id in local storage
+        //document.getElementById("productid").innerHTML = data[0].product_id;
+        localStorage.setItem("productId", data[0].product_id);
     })
     .catch(error => {
         console.error('Error:', error);
