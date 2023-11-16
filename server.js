@@ -8,7 +8,7 @@ const port = 3000;
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'root', // change the password
+  password: 'password', // change the password
   database: 'epay',
 });
 
