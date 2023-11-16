@@ -59,7 +59,6 @@ function itemClicked(element){
     .then(response => response.json())
     .then(data => {
         //store product id in local storage
-        //document.getElementById("productid").innerHTML = data[0].product_id;
         localStorage.setItem("productId", data[0].product_id);
     })
     .catch(error => {

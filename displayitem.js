@@ -52,3 +52,38 @@ function search(){
         console.error('Error:', error);
     });
 }
+
+function buyItem(){
+    let name = document.getElementById("itemName").innerHTML;
+    let price = document.getElementById("itemprice").innerHTML;
+    let descript = document.getElementById("itemdescript").innerHTML;
+    fetch('/findItem', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, price, descript }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        let seller = data[0].seller_id;
+        fetch('/insertItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ seller, price, name }),
+        })
+        .then(response => response.text())
+        .then(data => {
+            //return that item has been bought
+            document.getElementById("buyResult").textContent = data;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}

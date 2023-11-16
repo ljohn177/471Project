@@ -138,7 +138,7 @@ app.post('/addPay', (req,res) =>{
   })
 })
 
-//load an item when clicked on table
+//load an item when clicked on table  **WORKING
 app.post('/loadItem', (req, res) =>{
   const {productId} = req.body;
   connection.query('SELECT name, image, description, price FROM product WHERE product_id = ?', [productId],
@@ -165,7 +165,7 @@ app.post('/search', (req, res) =>{
   })
 })
 
-//get id of clicked product
+//get id of clicked product   **WORKING
 app.post('/findId', (req, res) =>{
   const {name} = req.body;
   connection.query('SELECT product_id FROM product WHERE name = ?', [name],
@@ -174,6 +174,40 @@ app.post('/findId', (req, res) =>{
       return res.status(500).send('Server error');
     }else{
       res.send(result);
+    }
+  })
+})
+
+//find seller id of an item  **WORKING
+app.post('/findItem', (req, res) =>{
+  const {name, price, descript} = req.body;
+  connection.query('SELECT seller_id FROM product WHERE name = ? AND description = ? AND price = ?', [name, descript, price],
+  (error, result)=>{
+    if(error){
+      return res.status(500).send('Server error');
+    }else{
+      res.send(result);
+    }
+  })
+})
+
+//insert item into payment table, and update product as sold **WORKING
+app.post('/insertItem', (req, res) =>{
+  let buyer = req.session.userId;
+  const {seller, price, name} = req.body;
+  connection.query('INSERT INTO payment(receiver_id, sender_id, amount) VALUES (?, ?, ?)', [seller, buyer, price],
+  (error, result) => {
+    if(error){
+      return res.status(500).send('Server Error');
+    }else{
+      connection.query('UPDATE product SET is_sold = 1 WHERE seller_id = ? AND name = ?', [seller, name],
+      (error,result) => {
+        if(error){
+         return res.status(500).send('Server error');
+        }else{
+          res.send("Successfully Bought Item");
+        }
+      })
     }
   })
 })
