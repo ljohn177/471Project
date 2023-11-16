@@ -3,6 +3,7 @@ const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
+const session = require('express-session');
 
 // Create a connection to your MySQL database
 const connection = mysql.createConnection({
@@ -19,7 +20,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serve your HTML files
 app.use(express.static(__dirname));
 
-// Handle user registration
+// Session Configuration
+app.use(
+  session({
+    secret: 'your_session_secret', // Change this to a secure random string
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }, // Change this to true if using HTTPS
+  })
+);
+
+// Handle user registration   **WORKING
 app.post('/register', (req, res) => {
 
   const { fname, lname, email, password, birthdate, phone, address } = req.body;
@@ -57,7 +68,7 @@ connection.query(
   });
 });
 
-// Handle user login
+// Handle user login    **WORKING
 app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
@@ -72,20 +83,23 @@ app.post('/login', (req, res) => {
       return res.status(401).send('Invalid credentials');
     }
 
+    // Store the user's ID in the session
+    req.session.userId = results[0].id;
+
     res.send('User logged in successfully');
   });
 });
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-//insert data when creating post into product table
+//insert data when creating post into product table **WORKING
 app.post('/createPost', (req, res) => {
   const { itemName, file, descript, price } = req.body;
-  connection.query('INSERT INTO product (name, image, description, price) VALUES (?, ?, ?, ?)',
-  [itemName, file, descript, price], 
+  let userId = req.session.userId;
+  connection.query('INSERT INTO product (name, image, description, price, seller_id) VALUES (?, ?, ?, ?, ?)',
+  [itemName, file, descript, price, userId], 
   (error, result) => {
     if (error) {
       console.error('Error inserting post data:', error);
@@ -95,7 +109,7 @@ app.post('/createPost', (req, res) => {
     });
 });
 
-//load post data for table
+//load post data for table  **WORKING BESIDES IMAGE
 app.post('/load', (req, res) =>{
   connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 'FALSE'",
   (error, result) =>{
@@ -108,10 +122,12 @@ app.post('/load', (req, res) =>{
   })
 })
 
-//add payment data to payment table
+//add payment data to payment table  **WORKING
 app.post('/addPay', (req,res) =>{
-  const { name, payment, cardno, cvv } = req.body;
-  connection.query('INSERT INTO paymentinfo(name, cardtype, card_no, cvv) VALUES (?, ?, ?, ?)', [name, payment, cardno, cvv],
+  const {fname, lname, payment, cardno, cvv } = req.body;
+  const name = `${fname} ${lname}`;
+  let userId = req.session.userId;
+  connection.query('INSERT INTO paymentinfo(user_id, name, cardtype, card_no, cvv) VALUES (?, ?, ?, ?, ?)', [userId, name, payment, cardno, cvv],
   (error, result) =>{
     if (error) {
       console.error('Error adding payment:', error);
@@ -121,10 +137,11 @@ app.post('/addPay', (req,res) =>{
     }
   })
 })
-//load an item when clicked on table
+
+//load an item when clicked on table  **WORKING
 app.post('/loadItem', (req, res) =>{
   const {productId} = req.body;
-  connection.query('SELECT product_id FROM product WHERE product_id = ?', [productId],
+  connection.query('SELECT name, image, description, price FROM product WHERE product_id = ?', [productId],
   (error, result) =>{
     if(error){
       console.error('Error adding payment:', error);
@@ -134,6 +151,8 @@ app.post('/loadItem', (req, res) =>{
     }
   })
 })
+
+//search functionality  **WORKING
 app.post('/search', (req, res) =>{
   const {searchString} = req.body;
   connection.query('SELECT name, image, description, price FROM product WHERE name LIKE ?', [searchString],
@@ -142,6 +161,53 @@ app.post('/search', (req, res) =>{
       return res.status(500).send('Server error');
     }else{
       res.send(result);
+    }
+  })
+})
+
+//get id of clicked product   **WORKING
+app.post('/findId', (req, res) =>{
+  const {name} = req.body;
+  connection.query('SELECT product_id FROM product WHERE name = ?', [name],
+  (error, result)=>{
+    if(error){
+      return res.status(500).send('Server error');
+    }else{
+      res.send(result);
+    }
+  })
+})
+
+//find seller id of an item  **WORKING
+app.post('/findItem', (req, res) =>{
+  const {name, price, descript} = req.body;
+  connection.query('SELECT seller_id FROM product WHERE name = ? AND description = ? AND price = ?', [name, descript, price],
+  (error, result)=>{
+    if(error){
+      return res.status(500).send('Server error');
+    }else{
+      res.send(result);
+    }
+  })
+})
+
+//insert item into payment table, and update product as sold **WORKING
+app.post('/insertItem', (req, res) =>{
+  let buyer = req.session.userId;
+  const {seller, price, name} = req.body;
+  connection.query('INSERT INTO payment(receiver_id, sender_id, amount) VALUES (?, ?, ?)', [seller, buyer, price],
+  (error, result) => {
+    if(error){
+      return res.status(500).send('Server Error');
+    }else{
+      connection.query('UPDATE product SET is_sold = 1 WHERE seller_id = ? AND name = ?', [seller, name],
+      (error,result) => {
+        if(error){
+         return res.status(500).send('Server error');
+        }else{
+          res.send("Successfully Bought Item");
+        }
+      })
     }
   })
 })

@@ -1,16 +1,16 @@
 function addPayment(){
-    let fname = document.getElementById("fname").value;
-    let lname = document.getElementById("lname").value;
-    fname = fname + " " + lname;
+    let fname = document.getElementById("fName").value;
+    let lname = document.getElementById("lName").value;
     let payment = document.getElementById("payment").value;
     let cardno = document.getElementById("cardNum").value;
     let cvv = document.getElementById("cvv").value;
+    const userPay = { fname, lname, payment, cardno, cvv };
     fetch('/addPay', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ fname, payment, cardno, cvv }),
+        body: JSON.stringify(userPay),
     })
     .then(response => response.text())
     .then(data => {

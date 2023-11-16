@@ -13,6 +13,12 @@
         </style>
     </head>
     <body>
+    <script>
+        if (!localStorage.getItem('user')) {
+            // Redirect to the login page if the user is not logged in
+            window.location.href = "signin.html";
+        }
+    </script>
         <h1><span style="color: red">E</span><span style="color: blue">p</span><span style="color: rgb(206, 206, 3)">a</span><span style="color: rgb(1, 195, 1)">y</span></h1>
         <div class="searchbar">
             <form>
@@ -42,5 +48,6 @@
         </form>
         <div id="createPostResult"></div>
         <script src = "createPost.js"></script>
+        <script src = "index.js"></script>
     </body>
 </html>

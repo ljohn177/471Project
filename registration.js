@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.text())
         .then(data => {
             document.getElementById('registrationResult').textContent = data;
+            // Redirect to the target page after successful login
+            window.location.href = "signin.html";
         })
         .catch(error => {
             console.error('Error:', error);
