@@ -27,10 +27,9 @@ function loadProduct(){
 }
 
 //function for searching
-function search(){
+function searchD(){
     var searchString = document.getElementById("search").value; //get string from search box
     searchString = "%" + searchString + "%";
-    window.location.href = "index.html";
     fetch('/search', {
         method: 'POST',
         headers: {
@@ -45,8 +44,8 @@ function search(){
         for(var i=0;i<data.length;i++){
             str += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
         }
-        document.getElementById("dataTable").innerHTML = ""; //clear previous table
-        document.getElementById("dataTable").innerHTML = str;
+        localStorage.setItem("search", str)
+        window.location.href = "index.html";
     })
     .catch(error => {
         console.error('Error:', error);

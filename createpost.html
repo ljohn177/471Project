@@ -22,8 +22,8 @@
         <h1><span style="color: red">E</span><span style="color: blue">p</span><span style="color: rgb(206, 206, 3)">a</span><span style="color: rgb(1, 195, 1)">y</span></h1>
         <div class="searchbar">
             <form>
-                <input type="text" placeholder="Search for anything">
-                <button id="search" type="submit" onclick = "search()">Search</button>
+                <input type="text" id="searchText" placeholder="Search for anything">
+                <button type= "button" id="searchbtn" onclick = "searchB()">Search</button>
             </form>
         </div>
         <nav class="navbar">
@@ -32,6 +32,7 @@
                 <li> <a href = "createpost.html">Create New Post</a></li>
                 <li> <a href = "signin.html">Sign In</a></li>
                 <li> <a href = "createaccount.html">Create Account</a></li>
+                <li> <a href = "payment.html">Add Payment</a></li>
         </ul>
         </nav>
         <form id="createpost">
@@ -44,7 +45,7 @@
             <input type="text" id="description"><br>
             <label for="imageupload" id="image">Image:</label>
             <input type="file" accept = "image/*" id="imageupload"><br>
-            <input id="submit" type="submit"></button>
+            <input id="submit" type="submit" onclick = "createPost()"></button>
         </form>
         <div id="createPostResult"></div>
         <script src = "createPost.js"></script>

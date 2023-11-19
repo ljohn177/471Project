@@ -17,6 +17,9 @@ document.getElementById('signinform').addEventListener('submit', function (event
             // Store user login status in localStorage
             localStorage.setItem('user', 'loggedIn');
 
+            //initialize search to null
+            localStorage.setItem("search", "null");
+
             // Redirect to the target page after successful login
             window.location.href = "index.html";
         } else {
