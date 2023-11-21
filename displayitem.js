@@ -42,7 +42,7 @@ function searchD(){
         var str = "";
         //fill table with returned rows
         for(var i=0;i<data.length;i++){
-            str += '<tr><td>'+data[i].image+'</td><td><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a></td><td>'+data[i].price+'</td><td>'+data[i].description+'</td></tr>';
+            str += '<li class = "productpost"><div class = "product"><div class = "imagecontainer">' +data[i].image+ '</div><div class = "productdesc"><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a><br>'+data[i].price+'<br>'+data[i].description+'</div></li>';
         }
         localStorage.setItem("search", str)
         window.location.href = "index.html";

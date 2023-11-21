@@ -93,7 +93,6 @@ h1{
 }
 #dataTable{
     /*list of products in the container on index.html */
-    border: 1px solid black;
     list-style-type: none;
 }
 td{
@@ -109,13 +108,15 @@ a{
 .postcontainer{
     /*container for all product listings */
     width: 75%;
-    overflow: scroll;
+    /*overflow: scroll;*/
     position: relative;
     left: 12%;
 }
 .productpost{
-    /*class for list item of the "dataTable list, mostly just here for displaying as an inline block */
+    /*class for list item of the "dataTable" list, mostly just here for displaying as an inline block */
     display: inline-block;
+    margin:25px;
+    border: 1px solid black;
 }
 .product{
     /*used in displaying product on index.html, container holding product image and text */
