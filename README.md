@@ -39,3 +39,4 @@ Contributors names and github accounts
 * Jacob Oats - jacobOats
 * Tyler Flinchum - TFlinchu
 * Lennon Johnson - ljohn177
+* Troyer Hostetler - TheShakeSnake
