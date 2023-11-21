@@ -2,7 +2,8 @@ function createPost(){
     const itemName = document.getElementById('itemname').value;
     const price = document.getElementById('price').value;
     const descript = document.getElementById('description').value;
-    const file = document.getElementById('imageupload').value;
+    const img = document.getElementById('imageupload').value;
+    const file = img.replace("C:\\fakepath\\", "images/");
 
     // Create an object containing all the post data
     const postData = {
