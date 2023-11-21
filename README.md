@@ -25,7 +25,7 @@ Some objectives of this project are to identify and address design-related issue
 
 ### Executing program
 
-* run the following command:
+* run the following command in your terminal, after navigating to the project folder:
 ```
 node server.js
 ```
@@ -34,8 +34,8 @@ node server.js
 
 ## Authors
 
-Contributors names and contact info
+Contributors names and github accounts
 
-Jacob Oats - jacobOats
-Tyler Flinchum - TFlinchu
-Lennon Johnson - ljohn177
+* Jacob Oats - jacobOats
+* Tyler Flinchum - TFlinchu
+* Lennon Johnson - ljohn177
