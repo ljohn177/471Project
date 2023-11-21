@@ -21,4 +21,14 @@ VALUES (1, "Nike Shoes", "nikeShoesImage.jpg", "a clean pair of nike shoes", 45.
 (8, "Necklace", "necklaceImage.jpg", "Shiny new necklace with real gold!", 72.48, 1, FALSE),
 (9, "Socks", "sockImage.jpg", "Freshly washed socks" , 1.99 , 6, FALSE),
 (10, "Watch", "watchImage.jpg", "vintage watch", 153.00, 3, FALSE),
-(11, "Laptop", "laptopImage.jpg", "Refurbished laptop", 989.99, 5, FALSE);
+(11, "Laptop", "laptopImage.jpg", "Refurbished laptop", 989.99, 5, FALSE),
+(12, "Puma Shoes", "PumaShoesImage.jpg", "puma walking shoes", 44.00, 2, FALSE),
+(13, "Apple Laptop", "appleLaptopImage.jpg", "a brand new MacBook pro",  1650.00, 4, FALSE),
+(14, "Dress Pants", "dressPantsImage.jpg", "fancy dress pants", 24.50, 2, FALSE),
+(15, "TShirt", "tShirtImage.jpg", "Class fit T-Shirt" , 5.99 , 5, FALSE),
+(16, "Ipad", "ipadImage.jpg", "old Ipad", 210.00, 1, FALSE),
+(17, "Backpack", "backpackImage.jpg", "school backpack", 35.99, 3, FALSE),
+(18, "Skateboard", "skateboardImage.jpg", "Sick skateboard", 50.50, 6, FALSE),
+(19, "Electric Bike", "electricBikeImage.jpg", "electric assisted pedaling bike" , 1499.99 , 2, FALSE),
+(20, "Cowboy Hat", "cowboyHatImage.jpg", "Authentic Cowboy Hat", 87.00, 3, FALSE),
+(21, "Gaming Laptop", "gamingLaptopImage.jpg", "Gaming laptop", 1989.99, 5, FALSE);
