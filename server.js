@@ -111,7 +111,7 @@ app.post('/createPost', (req, res) => {
 
 //load post data for table  **WORKING BESIDES IMAGE
 app.post('/load', (req, res) =>{
-  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 'FALSE'",
+  connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 0",
   (error, result) =>{
     if(error){
       console.error('Error retrieving data:', error);
@@ -155,7 +155,7 @@ app.post('/loadItem', (req, res) =>{
 //search functionality  **WORKING
 app.post('/search', (req, res) =>{
   const {searchString} = req.body;
-  connection.query('SELECT name, image, description, price FROM product WHERE name LIKE ?', [searchString],
+  connection.query('SELECT name, image, description, price FROM product WHERE name LIKE ? AND is_sold = 0', [searchString],
   (error, result)=>{
     if(error){
       return res.status(500).send('Server error');
