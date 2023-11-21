@@ -1,15 +1,27 @@
 const express = require('express');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const readline = require('readline');
 const app = express();
 const port = 3000;
 const session = require('express-session');
 
-// Create a connection to your MySQL database
+// Create a readline interface to get user input
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+// Prompt the user for the database password
+rl.question('Enter the database password: ', (password) => {
+  // Close the readline interface
+  rl.close();
+
+// Create a connection to your MySQL database with the provided password
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'root', // change the password
+  password: password,
   database: 'epay',
 });
 
@@ -211,3 +223,4 @@ app.post('/insertItem', (req, res) =>{
     }
   })
 })
+});

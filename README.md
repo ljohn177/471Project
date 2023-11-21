@@ -1,62 +1,41 @@
 # Project Title
 
-Simple overview of use/purpose.
+ePay
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+In a world increasingly reliant on e-commerce, eBay, as a prominent online marketplace, faces the constant challenge of maintaining and improving the design of its application to ensure a seamless and satisfying user experience.
+
+Some objectives of this project are to identify and address design-related issues within the application to enhance its usability, visual appeal, and overall functionality, ultimately fostering user engagement and satisfaction.
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* legacy SQL authorization
+* Nodejs : https://nodejs.org/en
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* Create another connection on your workbench titled 'EPay'
+* Leave host and port default
+* Create the database by running EPAY.sql script
+* Fill the database with values by running the DatabaseValues.sql script
+* Navigate to the project folder in your terminal and run 'npm install' to install all other dependencies
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+* run the following command:
 ```
-code blocks for commands
+node server.js
 ```
 
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+* connect through the link http://localhost:3000/createaccount.html
 
 ## Authors
 
 Contributors names and contact info
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+Jacob Oats - jacobOats
+Tyler Flinchum - TFlinchu
+Lennon Johnson - ljohn177
