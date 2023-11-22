@@ -6,11 +6,6 @@
 </head>
 <body onload="loadData()">
     <script>
-        if (!localStorage.getItem('user')) {
-            // Redirect to the login page if the user is not logged in
-            window.location.href = "signin.html";
-        }
-        
         function logout() {
             // Clear the user from localStorage and redirect to the login page
             localStorage.removeItem('user');
@@ -32,7 +27,14 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="createpost.html">Create New Post</a></li>
             <li><a href="payment.html">Add Payment</a></li>
-            <li><button onclick="logout()">Logout</button></li>
+            <script>
+               if (localStorage.getItem('user')) {
+                  document.write('<li><button onclick="logout()">Logout</button></li>');
+               } else {
+                  document.write('<li><a href="signin.html">Sign In</a></li>');
+                  document.write('<li><a href="createaccount.html">Create Account</a></li>');
+               }
+            </script>
         </ul>
     </nav>
 
@@ -45,5 +47,6 @@
     <script src="index.js"></script>
     <script src="displayitem.js"></script>
     <script src="createPost.js"></script>
+
 </body>
 </html>
