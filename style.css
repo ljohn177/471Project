@@ -1,4 +1,3 @@
-
 html{
     font-family: verdana, arial;
 }
@@ -10,22 +9,34 @@ h1{
     margin-bottom:0px;
 
 }
-.navbar ul{
+.navbar ul {
     list-style-type: none;
     background-color: hsl(0, 0%, 84%);
     padding: 0px;
     margin: 0px;
-    margin-top:8px;
+    margin-top: 8px;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
-.navbar a{
+.navbar li {
+    margin-left: 10px;
+}
+.navbar a, .navbar button{
     color: rgb(0, 0, 0);
     text-decoration: none;
     padding: 15px;
     display: block;
     text-align: center;
 }
-.navbar a:hover{
+
+.navbar button {
+    background-color: hsl(0, 0%, 84%);
+    border: none;
+    font-size: 17px
+}
+
+.navbar a:hover, .navbar button:hover {
     background-color: hsl(0, 0%, 62%);
 }
 .navbar li{

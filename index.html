@@ -1,41 +1,49 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Epay Home</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body onload = "loadData()">
+<head>
+    <title>Epay Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadData()">
     <script>
         if (!localStorage.getItem('user')) {
             // Redirect to the login page if the user is not logged in
             window.location.href = "signin.html";
         }
+        
+        function logout() {
+            // Clear the user from localStorage and redirect to the login page
+            localStorage.removeItem('user');
+            window.location.href = "signin.html";
+        }
     </script>
-        <h1><span style="color: red">E</span><span style="color: blue">p</span><span style="color: rgb(206, 206, 3)">a</span><span style="color: rgb(1, 195, 1)">y</span></h1>
-        <div class="searchbar">
-            <form>
-                <input type="text" placeholder="Search for anything" id="search">
-                <button id="searchbtn"type="button" onclick = "searchDB()">Search</button>
-            </form>
-        </div>
-        <nav class="navbar">
-            <ul>
-                <li> <a href = "index.html">Home</a></li>
-                <li> <a href = "createpost.html">Create New Post</a></li>
-                <li> <a href = "signin.html">Sign In</a></li>
-                <li> <a href = "createaccount.html">Create Account</a></li>
-                <li> <a href = "payment.html">Add Payment</a></li>
-        </ul>
-        </nav>
-        <!--Table for random data will go here-->
-        <div class = "postcontainer">
-            <ul id = "dataTable">
 
-            </ul>
-        </div>
-        <p id="test"></p>
-        <script src="index.js"></script>
-        <script src = "displayitem.js"></script>
-        <script src = "createPost.js"></script>
-    </body>
+    <h1><span style="color: red">E</span><span style="color: blue">p</span><span style="color: rgb(206, 206, 3)">a</span><span style="color: rgb(1, 195, 1)">y</span></h1>
+
+    <div class="searchbar">
+        <form>
+            <input type="text" placeholder="Search for anything" id="search">
+            <button id="searchbtn" type="button" onclick="searchDB()">Search</button>
+        </form>
+    </div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="createpost.html">Create New Post</a></li>
+            <li><a href="payment.html">Add Payment</a></li>
+            <li><button onclick="logout()">Logout</button></li>
+        </ul>
+    </nav>
+
+    <!--Table for random data will go here-->
+    <div class="postcontainer">
+        <ul id="dataTable"></ul>
+    </div>
+
+    <p id="test"></p>
+    <script src="index.js"></script>
+    <script src="displayitem.js"></script>
+    <script src="createPost.js"></script>
+</body>
 </html>
