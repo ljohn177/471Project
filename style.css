@@ -125,6 +125,7 @@ a{
 }
 .productpost{
     /*class for list item of the "dataTable" list, mostly just here for displaying as an inline block */
+    cursor: pointer;
     display: inline-block;
     margin:25px;
     border: 1px solid black;
