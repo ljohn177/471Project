@@ -3,7 +3,7 @@ function createPost(){
     const price = document.getElementById('price').value;
     const descript = document.getElementById('description').value;
     const img = document.getElementById('imageupload').value;
-    const file = img.replace("C:\\fakepath\\", "images/");
+    const file = img.replace("C:\\fakepath\\", "/Images/");
 
     // Create an object containing all the post data
     const postData = {
@@ -45,7 +45,7 @@ function searchB(){
         var str = "";
         //fill table with returned rows
         for(var i=0;i<data.length;i++){
-            str += '<li class = "productpost><div class = "product"><div class = "imagecontainer">' +data[i].image+ '</div><div class = "productdesc"><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a><br>'+data[i].price+'<br>'+data[i].description+'</div></li>';
+            str += '<li class = "productpost><div class = "product"><div class = "imagecontainer"><img src=\"' +data[i].image+ '\"></div><div class = "productdesc"><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a><br>'+data[i].price+'<br>'+data[i].description+'</div></li>';
         }
         localStorage.setItem("search", str);
         window.location.href = "index.html";
