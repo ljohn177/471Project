@@ -96,8 +96,8 @@ h1{
     margin-right:2%;
 }
 #itemdescript{
-    margin-right:12%;
     text-align: center;
+   /* margin-right:12%; */
 }
 #productid{
     visibility: hidden;
@@ -141,5 +141,16 @@ a{
     max-height: 200px;
     width: auto;
     height: auto;
+}
+#item{
+    /*border: 1px solid black;*/
+    width: 750px;
+    height: 500px;
+    position: absolute;
+    left: 45%;
+}
+#pricebtn{
+    position: relative;
+    left: 40%;
 }
 

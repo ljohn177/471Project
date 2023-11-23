@@ -32,11 +32,16 @@
             <li><button onclick="logout()">Logout</button></li>
         </ul>
     </nav>
+    <img id="itemimg">
+    <div id = "item">
         <h3 id="itemName"></h3>
-        <img id="itemimg">
-        <h4 id="itemprice"></h4>
-        <button id="buybtn" type="submit" onclick = "buyItem()">Buy</button>
         <p id="itemdescript"></p>
+        <div id = "pricebtn">
+            <h4 id="itemprice"></h4>
+            <button id="buybtn" type="submit" onclick = "buyItem()">Buy</button>
+        </div>
+        
+    </div>
 
         <p id="productid"></p>
         <div id="buyResult"></div>
