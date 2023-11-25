@@ -1,25 +1,21 @@
-function createPost(){
+function createPost() {
     const itemName = document.getElementById('itemname').value;
     const price = document.getElementById('price').value;
     const descript = document.getElementById('description').value;
-    const img = document.getElementById('imageupload').value;
-    const file = img.replace("C:\\fakepath\\", "/Images/");
+    const imageInput = document.getElementById('imageupload');
+    const file = imageInput.files[0];
 
     // Create an object containing all the post data
-    const postData = {
-        itemName,
-        file,
-        descript,
-        price,
-    };
+    const postData = new FormData();
+    postData.append('itemName', itemName);
+    postData.append('price', price);
+    postData.append('descript', descript);
+    postData.append('image', file);
 
     // Send the post data to the server
     fetch('/createPost', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(postData),
+        body: postData,
     })
     .then(response => response.text())
     .then(data => {
@@ -27,8 +23,9 @@ function createPost(){
     })
     .catch(error => {
         console.error('Error:', error);
-    })
+    });
 }
+
 
 function searchB(){
     var searchString = document.getElementById("searchText").value;

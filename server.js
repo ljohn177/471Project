@@ -5,12 +5,26 @@ const readline = require('readline');
 const app = express();
 const port = 3000;
 const session = require('express-session');
+const multer = require('multer');
+const path = require('path');
 
 // Create a readline interface to get user input
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
+
+// Set up multer for handling file uploads
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'Images/'); // Specify the destination folder
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname); // Use the original file name
+  },
+});
+
+const upload = multer({ storage });
 
 // Prompt the user for the database password
 rl.question('Enter the database password: ', (password) => {
@@ -107,21 +121,24 @@ app.listen(port, () => {
 });
 
 //insert data when creating post into product table **WORKING
-app.post('/createPost', (req, res) => {
-  const { itemName, file, descript, price } = req.body;
+app.post('/createPost', upload.single('image'), (req, res) => {
+  const { itemName, descript, price } = req.body;
+  const image = "/Images/" + req.file.filename; // Add "/Images/" before the filename
   let userId = req.session.userId;
+
   connection.query('INSERT INTO product (name, image, description, price, seller_id) VALUES (?, ?, ?, ?, ?)',
-  [itemName, file, descript, price, userId], 
-  (error, result) => {
-    if (error) {
-      console.error('Error inserting post data:', error);
-      return res.status(500).send('Server error');
-    }
-    res.send('Post created successfully');
+    [itemName, image, descript, price, userId],
+    (error, result) => {
+      if (error) {
+        console.error('Error inserting post data:', error);
+        return res.status(500).send('Server error');
+      }
+      res.send('Post created successfully');
     });
 });
 
-//load post data for table  **WORKING BESIDES IMAGE
+
+//load post data for table
 app.post('/load', (req, res) =>{
   connection.query("SELECT name, image, description, price FROM product WHERE is_sold = 0",
   (error, result) =>{
