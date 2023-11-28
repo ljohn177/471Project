@@ -58,7 +58,6 @@ function buyItem(){
     price = price.replace("$", "");
     price = Number(price);
     let descript = document.getElementById("itemdescript").innerHTML;
-    alert(name); alert(price); alert(descript);
     fetch('/findItem', {
         method: 'POST',
         headers: {
