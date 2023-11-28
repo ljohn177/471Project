@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const phone = document.getElementById('phone').value;
         const address = document.getElementById('address').value;
 
+        // Add a validation to check if the password and confirm password match
+        if (password !== cpassword) {
+            document.getElementById('registrationResult').textContent = "Passwords do not match";
+            return; // Do not proceed with the registration
+        }
+
         // Create an object containing all the user registration data
         const userData = {
             fname,
