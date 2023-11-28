@@ -55,7 +55,10 @@ function searchD(){
 function buyItem(){
     let name = document.getElementById("itemName").innerHTML;
     let price = document.getElementById("itemprice").innerHTML;
+    price = price.replace("$", "");
+    price = Number(price);
     let descript = document.getElementById("itemdescript").innerHTML;
+    alert(name); alert(price); alert(descript);
     fetch('/findItem', {
         method: 'POST',
         headers: {
