@@ -40,7 +40,7 @@ CREATE TABLE paymentinfo(
 	user_id INT NOT NULL,
 	name VARCHAR(255),
     cardtype VARCHAR(255),
-    card_no INT NOT NULL,
+    card_no VARCHAR(16) NOT NULL,
     cvv INT,
     PRIMARY KEY (card_no),
     FOREIGN KEY (user_id) REFERENCES user(id)

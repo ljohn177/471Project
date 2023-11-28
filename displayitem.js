@@ -18,7 +18,7 @@ function loadProduct(){
     .then(data => {
         itemName.innerHTML = data[0].name;
         itemimg.src = data[0].image;
-        itemprice.innerHTML = data[0].price;
+        itemprice.innerHTML = '$' + data[0].price;
         descript.innerHTML = data[0].description;
     })
     .catch(error => {
@@ -42,7 +42,7 @@ function searchD(){
         var str = "";
         //fill table with returned rows
         for(var i=0;i<data.length;i++){
-            str += '<li class = "productpost"><div class = "product"><div class = "imagecontainer"><img src=\"' +data[i].image+ '"\></div><div class = "productdesc"><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a><br>'+data[i].price+'<br>'+data[i].description+'</div></li>';
+            str += '<li class = "productpost"><div class = "product"><div class = "imagecontainer"><img src=\"' +data[i].image+ '"\></div><div class = "productdesc"><a href="displayitem.html" onclick = "itemClicked(this)">'+data[i].name+'</a><br>'+ '$' +data[i].price+'<br>'+data[i].description+'</div></li>';
         }
         localStorage.setItem("search", str)
         window.location.href = "index.html";
