@@ -20,7 +20,7 @@ CREATE TABLE product(
     name VARCHAR(1000) NOT NULL,
     image VARCHAR(500) NOT NULL,
     description VARCHAR(1000), 
-    price FLOAT NOT NULL,
+    price VARCHAR(14) NOT NULL,
     seller_id INT NOT NULL,
     is_sold BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (product_id),
