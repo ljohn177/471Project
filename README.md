@@ -21,7 +21,10 @@ Some objectives of this project are to identify and address design-related issue
 * Leave host and port default
 * Create the database by running EPAY.sql script
 * Fill the database with values by running the DatabaseValues.sql script
-* Navigate to the project folder in your terminal and run 'npm install' to install all other dependencies
+* Navigate to the project folder in your terminal and run the following command to install all other dependencies
+```
+npm install
+```
 
 ### Executing program
 
