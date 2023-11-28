@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html style="font-family: verdana, arial">
     <head>
+        <link rel="stylesheet" href="style.css">
         <title>Epay Payment Info</title>
         <script>
             if (!localStorage.getItem('user')) {
@@ -10,8 +11,28 @@
         </script>
     </head>
     <body>
-        <br><br>
         <h1 style="text-align: center;"><span style="color: red">E</span><span style="color: blue">p</span><span style="color: rgb(206, 206, 3)">a</span><span style="color: rgb(1, 195, 1)">y</span></h1>
+        <div class="searchbar">
+            <form>
+                <input type="text" placeholder="Search for anything" id="search">
+                <button id="searchbtn" type="button" onclick="searchD()">Search</button>
+            </form>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="createpost.html">Create New Post</a></li>
+                <li><a href="payment.html">Add Payment</a></li>
+                <script>
+                   if (localStorage.getItem('user')) {
+                      document.write('<li><button onclick="logout()">Logout</button></li>');
+                   } else {
+                      document.write('<li><a href="signin.html">Sign In</a></li>');
+                      document.write('<li><a href="createaccount.html">Create Account</a></li>');
+                   }
+                </script>
+            </ul>
+        </nav>
         <form id="pay">
             <h3>Payment Info</h3>
             <label for="fName">First Name:</label>
@@ -33,7 +54,9 @@
             <input id="submit" type="submit" onclick = "addPayment()">
         </form>
         <div id="paymentResult"></div>
+        <script src="displayitem.js"></script>
         <script src = "payment.js"></script>
+        <script src="index.js"></script>
     </body>
     <style>
         #pay{
@@ -88,4 +111,5 @@
             margin-top:5px;
         }
     </style>
+     
 </html>
